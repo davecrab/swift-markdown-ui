@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C31BA9A2DBC1F9000B6F589 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 7C31BA992DBC1F9000B6F589 /* MarkdownUI */; };
+		7C31BA9C2DBC1FC200B6F589 /* CustomInlineSyntaxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C31BA9B2DBC1FC200B6F589 /* CustomInlineSyntaxView.swift */; };
 		9902F2B229571D5D003A2DCC /* ImagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9902F2B129571D5D003A2DCC /* ImagesView.swift */; };
 		9902F2B729575183003A2DCC /* ImageProvidersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9902F2B629575183003A2DCC /* ImageProvidersView.swift */; };
 		991E39862950A73500A3012A /* QuotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991E39852950A73500A3012A /* QuotesView.swift */; };
@@ -32,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7C31BA9B2DBC1FC200B6F589 /* CustomInlineSyntaxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInlineSyntaxView.swift; sourceTree = "<group>"; };
 		9902F2B129571D5D003A2DCC /* ImagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesView.swift; sourceTree = "<group>"; };
 		9902F2B629575183003A2DCC /* ImageProvidersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProvidersView.swift; sourceTree = "<group>"; };
 		991E39852950A73500A3012A /* QuotesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuotesView.swift; sourceTree = "<group>"; };
@@ -63,6 +66,7 @@
 				994F5D87295821AF00B2BB51 /* SDWebImageSwiftUI in Frameworks */,
 				99DE2A2F294D9AFB0025E332 /* MarkdownUI in Frameworks */,
 				99B59C9B29548FCF00390E9B /* Splash in Frameworks */,
+				7C31BA9A2DBC1F9000B6F589 /* MarkdownUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,6 +103,7 @@
 		99DE2A1D294D9A2B0025E332 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				7C31BA9B2DBC1FC200B6F589 /* CustomInlineSyntaxView.swift */,
 				99B59C9C2954909000390E9B /* SyntaxHighlighter */,
 				99DE2A20294D9A2B0025E332 /* ContentView.swift */,
 				991E39872950A80C00A3012A /* CodeView.swift */,
@@ -156,6 +161,7 @@
 				99DE2A2E294D9AFB0025E332 /* MarkdownUI */,
 				99B59C9A29548FCF00390E9B /* Splash */,
 				994F5D86295821AF00B2BB51 /* SDWebImageSwiftUI */,
+				7C31BA992DBC1F9000B6F589 /* MarkdownUI */,
 			);
 			productName = Demo;
 			productReference = 99DE2A1B294D9A2B0025E332 /* Demo.app */;
@@ -169,7 +175,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1420;
-				LastUpgradeCheck = 1420;
+				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					99DE2A1A294D9A2B0025E332 = {
 						CreatedOnToolsVersion = 14.2;
@@ -188,6 +194,7 @@
 			packageReferences = (
 				99B59C9929548FCF00390E9B /* XCRemoteSwiftPackageReference "Splash" */,
 				994F5D85295821AF00B2BB51 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				7C31BA982DBC1F9000B6F589 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
 			);
 			productRefGroup = 99DE2A1C294D9A2B0025E332 /* Products */;
 			projectDirPath = "";
@@ -224,6 +231,7 @@
 				99B59CA02954990B00390E9B /* SplashCodeSyntaxHighlighter.swift in Sources */,
 				99DE2A3B294EE3C80025E332 /* DingusView.swift in Sources */,
 				99DE2A41294F8ED70025E332 /* TextStylesView.swift in Sources */,
+				7C31BA9C2DBC1FC200B6F589 /* CustomInlineSyntaxView.swift in Sources */,
 				99DE2A3F294F33030025E332 /* ListsView.swift in Sources */,
 				99B59C9E295490B300390E9B /* TextOutputFormat.swift in Sources */,
 				99DE2A3D294F256A0025E332 /* HeadingsView.swift in Sources */,
@@ -242,6 +250,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -274,6 +283,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -302,6 +312,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -334,6 +345,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -436,6 +448,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		7C31BA982DBC1F9000B6F589 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/davecrab/swift-markdown-ui.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		994F5D85295821AF00B2BB51 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
@@ -455,6 +475,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		7C31BA992DBC1F9000B6F589 /* MarkdownUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7C31BA982DBC1F9000B6F589 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
+			productName = MarkdownUI;
+		};
 		994F5D86295821AF00B2BB51 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 994F5D85295821AF00B2BB51 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;

@@ -18,19 +18,25 @@ struct CustomInlineSyntaxView: View {
     Attempting an out-of-bounds citation [4] should render but might not be interactive if no URL is provided.
     """#
 
+    // Define URLs as optionals for convenience in initialization
     private let sampleCitationURLs: [URL?] = [
         URL(string: "https://www.example.com/source/1"), // For [1]
         URL(string: "https://www.example.com/source/2"), // For [2]
-        URL(string: "https://www.example.com/source/3")  // For [3]
-        // No URL for [4]
+        URL(string: "https://www.example.com/source/3"),  // For [3]
+        nil // Explicitly nil for [4] to show handling of missing citations
     ]
+    
+    // Computed property that filters out nil values for the environment
+    private var nonNilCitationURLs: [URL] {
+        sampleCitationURLs.compactMap { $0 }
+    }
 
     var body: some View {
         ScrollView {
             Markdown(markdownContent)
                 .padding()
                 .markdownTheme(.gitHub) // Use a standard theme
-                .environment(\.citationURLs, sampleCitationURLs)
+                .environment(\.citationURLs, nonNilCitationURLs)
         }
         .navigationTitle("Custom Syntax")
         .navigationBarTitleDisplayMode(.inline)
