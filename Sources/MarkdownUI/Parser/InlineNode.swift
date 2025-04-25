@@ -11,6 +11,9 @@ enum InlineNode: Hashable, Sendable {
   case strikethrough(children: [InlineNode])
   case link(destination: String, children: [InlineNode])
   case image(source: String, children: [InlineNode])
+  // --- Add custom nodes ---
+  case citation(number: Int)
+  case artifactReference(title: String, uuid: String)
 }
 
 extension InlineNode {
@@ -27,6 +30,10 @@ extension InlineNode {
         return children
       case .image(_, let children):
         return children
+      // --- Add custom nodes ---
+      case .citation, .artifactReference:
+        // Custom nodes don't have children in this model
+        return []
       default:
         return []
       }
@@ -44,6 +51,10 @@ extension InlineNode {
         self = .link(destination: destination, children: newValue)
       case .image(let source, _):
         self = .image(source: source, children: newValue)
+      // --- Add custom nodes ---
+      case .citation, .artifactReference:
+        // Cannot set children on custom nodes
+        break
       default:
         break
       }

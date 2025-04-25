@@ -240,6 +240,51 @@ extension Theme {
 }
 ```
 
+## Custom Inline Syntax
+
+This version of MarkdownUI includes experimental support for custom inline syntax, specifically for citations and artifact references.
+
+**Syntax:**
+
+*   **Citations:** Use `[N]` where `N` is an integer representing the citation number (e.g., `[1]`, `[42]`).
+*   **Artifact References:** Use `@[Title](artifact:UUID)` where `Title` is the displayed text and `UUID` is the unique identifier for the artifact (e.g., `@[Design Doc](artifact:123e4567-e89b-12d3-a456-426614174000)`).
+
+**Rendering:**
+
+The library parses these syntaxes within text nodes and renders them as styled `Text` components. Currently, citations are rendered as underlined blue text (e.g., `[1]`) and artifacts as purple text with a link icon (e.g., `🔗 Design Doc`).
+
+**Providing Context:**
+
+For citations to be potentially interactive (e.g., linking to a bibliography), you need to provide an array of URLs via the environment.
+
+```swift
+import MarkdownUI
+import SwiftUI
+
+struct ContentView: View {
+  let markdown = """
+  Here is a reference to the first source [1].
+  Check the @[Design Spec](artifact:spec-id-001) for details.
+  Another citation [2] is also relevant.
+  """
+
+  let citationLinks: [URL?] = [
+    URL(string: "https://example.com/source1"),
+    URL(string: "https://example.com/source2")
+  ]
+
+  var body: some View {
+    ScrollView {
+      Markdown(markdown)
+        .padding()
+        .environment(\.citationURLs, citationLinks) // Provide citation URLs
+    }
+  }
+}
+```
+
+*Note: The rendering of these custom elements is currently basic. Further customization might involve modifying the `InlineText.swift` view or creating custom `InlineStyle` configurations if the library evolves to support that.*
+
 ## Documentation
 
 [Swift Package Index](https://swiftpackageindex.com) kindly hosts the online documentation for all versions, available here:

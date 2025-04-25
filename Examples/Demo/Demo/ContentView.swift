@@ -70,6 +70,12 @@ struct ContentView: View {
           } label: {
             Label("Image Providers", systemImage: "powerplug")
           }
+          NavigationLink {
+            CustomInlineSyntaxView()
+              // Use the navigationTitle set within the view
+          } label: {
+            Label("Custom Syntax", systemImage: "pencil.and.outline") // Example icon
+          }
         }
         Section("Other") {
           NavigationLink {
