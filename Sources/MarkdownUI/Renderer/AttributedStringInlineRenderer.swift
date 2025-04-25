@@ -61,6 +61,10 @@ private struct AttributedStringInlineRenderer {
       self.renderLink(destination: destination, children: children)
     case .image(let source, let children):
       self.renderImage(source: source, children: children)
+    case .citation(let number):
+      self.renderText("[" + String(number) + "]")
+    case .artifactReference(let title, _):
+      self.renderText(title)
     }
   }
 

@@ -418,6 +418,16 @@ extension UnsafeNode {
       cmark_node_set_url(node, source)
       children.compactMap(UnsafeNode.make).forEach { cmark_node_append_child(node, $0) }
       return node
+    case .citation(let number):
+      let text = "[" + String(number) + "]"
+      guard let node = cmark_node_new(CMARK_NODE_TEXT) else { return nil }
+      cmark_node_set_literal(node, text)
+      return node
+    case .artifactReference(let title, let uuid):
+      let text = "@[" + title + "](artifact:" + uuid + ")"
+      guard let node = cmark_node_new(CMARK_NODE_TEXT) else { return nil }
+      cmark_node_set_literal(node, text)
+      return node
     }
   }
 }

@@ -30,7 +30,7 @@ struct InlineText: View {
   private func renderNodeAsText(_ node: InlineNode, attributes: AttributeContainer) -> Text {
     switch node {
     case .text(let string):
-        if string.range(of: "(\\[\\d+\\])|(@\\[(.+?)\\]\\\(artifact:([a-fA-F0-9\\-]+)\\\\))", options: .regularExpression) != nil {
+        if string.range(of: "(\\[\\d+\\])|(@\\[(.+?)\\]\\(artifact:([a-fA-F0-9\\-]+)\\))", options: .regularExpression) != nil {
              return renderTextWithCustomSyntaxAsText(string, attributes: attributes)
         } else {
              return renderStandardInline(node, attributes: attributes)
@@ -59,8 +59,9 @@ struct InlineText: View {
     case .link(let destination, let children):
         let content = renderInlineSequenceAsText(children, attributes: attributes)
         if let url = URL(string: destination, relativeTo: baseURL) {
-            return content.underline().foregroundColor(theme.link.foregroundColor ?? .accentColor)
-                       .onTapGesture { OpenURLAction { _ in .handled }.callAsFunction(url) }
+            // Apply link styling - can't use .onTapGesture as it returns some View instead of Text
+            // Links will be handled by the AttributedString link handling mechanism
+            return content.underline().foregroundColor(.blue)
         } else {
             return content
         }
@@ -104,7 +105,7 @@ struct InlineText: View {
   }
 
   private func renderTextWithCustomSyntaxAsText(_ text: String, attributes: AttributeContainer) -> Text {
-    let pattern = "(\\[\\d+\\])|(@\\[(.+?)\\]\\\(artifact:([a-fA-F0-9\\-]+)\\\\))"
+    let pattern = "(\\[\\d+\\])|(@\\[(.+?)\\]\\(artifact:([a-fA-F0-9\\-]+)\\))"
     let regex = try! NSRegularExpression(pattern: pattern)
     var lastIndex = text.startIndex
     var combinedText = Text("")

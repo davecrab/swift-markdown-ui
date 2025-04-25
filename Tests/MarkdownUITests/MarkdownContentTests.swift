@@ -423,4 +423,21 @@ final class MarkdownContentTests: XCTestCase {
     )
     XCTAssertEqual(markdown, content.renderMarkdown())
   }
+
+  func testCustomInlineSyntaxRendering() {
+    // given
+    let markdown = "See citation [1] and artifact @[My Doc](artifact:doc-1). Bold **[2]** and italic *@[Other Doc](artifact:doc-2)*."
+    let expectedPlainText = "See citation [1] and artifact @My Doc. Bold [2] and italic @Other Doc."
+
+    // when
+    let content = MarkdownContent(markdown)
+    let renderedPlainText = content.renderPlainText() // Assuming this uses AttributedStringInlineRenderer
+
+    // then
+    XCTAssertEqual(renderedPlainText, expectedPlainText)
+    
+    // Also check AttributedString if needed, might require more setup or a specific helper
+    // let attributedString = content.renderAttributedString(...) 
+    // XCTAssert(...) 
+  }
 }

@@ -342,5 +342,35 @@
 
       assertSnapshot(of: view, as: .image(layout: layout))
     }
+
+    // MARK: - Custom Syntax Tests
+
+    func testCustomInlineSyntax() {
+      let view = Markdown {
+        #"""
+        ## Custom Syntax Test
+
+        This tests citations like [1] and [2], and also artifact references such as @[My Document](artifact:doc-uuid-1).
+
+        They can be **bold [1]** or *italic @[Another Doc](artifact:doc-uuid-2)*.
+
+        Links should still work: [Example Link](https://www.example.com).
+
+        Multiple citations [1], [2], [3] and artifacts @[Spec](artifact:spec-abc) @[Guide](artifact:guide-xyz) can appear.
+
+        An unknown citation [99] should render as text.
+        """#
+      }
+      .border(Color.accentColor)
+      .padding()
+      .environment(\.citationURLs, [
+          URL(string: "https://example.com/citation/1"),
+          URL(string: "https://example.com/citation/2"),
+          URL(string: "https://example.com/citation/3"),
+      ])
+
+      assertSnapshot(of: view, as: .image(layout: layout))
+    }
+
   }
 #endif
