@@ -9,7 +9,7 @@ extension EnvironmentValues {
     ///
     /// Use this environment value to provide the necessary URLs
     /// when rendering custom citation nodes.
-    var citationURLs: [URL]? {
+    public var citationURLs: [URL]? {
         get { self[CitationURLsKey.self] }
         set { self[CitationURLsKey.self] = newValue }
     }
