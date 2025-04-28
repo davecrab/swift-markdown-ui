@@ -117,6 +117,12 @@ public struct Theme: Sendable {
 
   /// The link style.
   public var link: TextStyle = EmptyTextStyle()
+  
+  /// The citation badge style.
+  public var citation: CitationStyle = CitationStyle()
+  
+  /// The artifact reference style.
+  public var artifactReference: ArtifactReferenceStyle = ArtifactReferenceStyle()
 
   var headings = Array(
     repeating: BlockStyle<BlockConfiguration> { $0.label },

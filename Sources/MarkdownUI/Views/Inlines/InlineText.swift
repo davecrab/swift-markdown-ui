@@ -37,15 +37,14 @@ struct InlineText: View {
         }
 
     case .citation(let number):
-        return Text("[\(number)]")
-            .foregroundColor(.blue)
-            .underline()
-            // If CitationBadgeView conforms to InlineView, Text(...) might work
+        // Get URL from environment if available
+        let url = citationURL(for: number)
+        // Use the custom CitationBadgeView wrapped in Text
+        return Text(CitationBadgeView(number: number, url: url))
 
     case .artifactReference(let title, let uuid):
-        return Text("🔗 \(title)")
-            .foregroundColor(.purple)
-            // If ArtifactReference conforms ..., Text(...) might work
+        // Use the custom ArtifactReferenceView wrapped in Text
+        return Text(ArtifactReferenceView(title: title, uuid: uuid))
 
     case .strong(let children):
         return renderInlineSequenceAsText(children, attributes: attributes).bold()

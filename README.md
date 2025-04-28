@@ -251,11 +251,14 @@ This version of MarkdownUI includes experimental support for custom inline synta
 
 **Rendering:**
 
-The library parses these syntaxes within text nodes and renders them as styled `Text` components. Currently, citations are rendered as underlined blue text (e.g., `[1]`) and artifacts as purple text with a link icon (e.g., `🔗 Design Doc`).
+The library parses these syntaxes within text nodes and renders them as styled badge components:
+
+* **Citations:** Rendered as blue badges with the citation number. When tapped, they open the corresponding URL if provided.
+* **Artifact References:** Rendered as purple badges with a link icon and the artifact title.
 
 **Providing Context:**
 
-For citations to be potentially interactive (e.g., linking to a bibliography), you need to provide an array of URLs via the environment.
+For citations to be interactive (opening URLs when tapped), you need to provide an array of URLs via the environment.
 
 ```swift
 import MarkdownUI
@@ -268,10 +271,11 @@ struct ContentView: View {
   Another citation [2] is also relevant.
   """
 
-  let citationLinks: [URL?] = [
-    URL(string: "https://example.com/source1"),
-    URL(string: "https://example.com/source2")
-  ]
+  // Non-optional URLs for the environment
+  var citationLinks: [URL] {
+    [URL(string: "https://example.com/source1")!,
+     URL(string: "https://example.com/source2")!]
+  }
 
   var body: some View {
     ScrollView {
@@ -283,7 +287,37 @@ struct ContentView: View {
 }
 ```
 
-*Note: The rendering of these custom elements is currently basic. Further customization might involve modifying the `InlineText.swift` view or creating custom `InlineStyle` configurations if the library evolves to support that.*
+**Customizing Appearance:**
+
+You can customize the appearance of citations and artifact references through the theme system:
+
+```swift
+Markdown(markdown)
+  .markdownTheme { theme in
+    // Customize citation badges
+    theme.citation = CitationStyle(
+      foregroundColor: .white,
+      backgroundColor: .red.opacity(0.8),
+      fontWeight: .bold,
+      cornerRadius: 6,
+      horizontalPadding: 5,
+      verticalPadding: 2
+    )
+    
+    // Customize artifact references
+    theme.artifactReference = ArtifactReferenceStyle(
+      foregroundColor: .green,
+      backgroundColor: .green.opacity(0.15),
+      fontWeight: .semibold,
+      cornerRadius: 6,
+      horizontalPadding: 5,
+      verticalPadding: 2,
+      iconName: "doc.circle.fill" // SF Symbol name
+    )
+    
+    return theme
+  }
+```
 
 ## Documentation
 
